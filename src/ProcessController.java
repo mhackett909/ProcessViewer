@@ -27,12 +27,10 @@ public class ProcessController {
         };
         timer.schedule(task,0,1000);
     }
-    
+
     private void refreshModelAndView() {
-        try {
-            processModel.refreshProcesses();
-        }catch (InterruptedException e) { e.printStackTrace(); }
-        catch (IOException e) { e.printStackTrace(); }
+        try { processModel.refreshProcesses(); }
+        catch (InterruptedException | IOException e) { e.printStackTrace(); }
         processView.clearTable();
         int processSize = processModel.getSize();
         int tableSize = processView.getTable().getRowCount();
@@ -49,8 +47,8 @@ public class ProcessController {
         for (int i = 0; i < processSize; i++) {
             tableModel.setValueAt(keys[i], i, 0);
             ProcessInfo info = processModel.getProcessInfo(keys[i]);
-            tableModel.setValueAt(info.processName, i, 1);
-            tableModel.setValueAt(info.processBytes, i, 2);
+            tableModel.setValueAt(info.getProcessName(), i, 1);
+            tableModel.setValueAt(info.getProcessBytes(), i, 2);
         }
         processView.selectLastIndex();
     }
