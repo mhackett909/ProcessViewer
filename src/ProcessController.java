@@ -23,7 +23,7 @@ public class ProcessController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int clickedColumn = processView.getTable().columnAtPoint(e.getPoint());
-                processModel.setSortType(clickedColumn);
+
             }
             @Override
             public void mousePressed(MouseEvent e) { }
@@ -65,5 +65,6 @@ public class ProcessController {
             tableModel.setValueAt(info.processName, i, 1);
             tableModel.setValueAt(info.processBytes, i, 2);
         }
+        processView.selectLastIndex();
     }
 }
