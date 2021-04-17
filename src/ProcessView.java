@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 
 public class ProcessView extends JFrame {
@@ -7,6 +6,7 @@ public class ProcessView extends JFrame {
     JTable table;
     static int MIN_ROWS = 100, COL_NUM = 3;
     private int lastSelectedID = -1;
+
     public ProcessView(String title) {
         //Frame layout
         super(title);
@@ -47,9 +47,11 @@ public class ProcessView extends JFrame {
         add(panel);
         setVisible(true);
     }
+
     public JButton getButton() { return button; }
+
     public JTable getTable() { return table; }
-    public JTableHeader getTableHeader() { return table.getTableHeader(); }
+
     public void clearTable() {
         int currentRow = table.getSelectedRow();
         try {
@@ -63,6 +65,7 @@ public class ProcessView extends JFrame {
                 table.getModel().setValueAt("", i, j);
         }
     }
+
     public void selectLastIndex() {
         if (lastSelectedID == -1) return;
         for (int i = 0; i < table.getRowCount(); i++) {
@@ -70,8 +73,6 @@ public class ProcessView extends JFrame {
                 table.setRowSelectionInterval(i,i);
                 break;
             }
-
         }
-
     }
 }
