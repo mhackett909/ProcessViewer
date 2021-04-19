@@ -65,19 +65,7 @@ public class ProcessModel {
         }catch (IOException e) { e.printStackTrace(); }
     }
 
-    //Private Methods
-    /**
-     * Deletes processes from the HashMap if they are no longer running.
-     * Avoids concurrent modification.
-     */
-    private void deleteOldProcesses() {
-        oldEntries.clear();
-        for (int id : processInfoHashMap.keySet()) {
-            if (!compareIDs.contains(id)) oldEntries.add(id);
-        }
-        for (int id : oldEntries) processInfoHashMap.remove(id);
-    }
-
+    //Accessors
     /**
      * Returns an integer array containing the HashMap's keyset.
      */
@@ -102,6 +90,19 @@ public class ProcessModel {
      * @return A ProcessInfo object
      */
     public ProcessInfo getProcessInfo(int id) { return processInfoHashMap.get(id);  }
+
+    //Private Methods
+    /**
+     * Deletes processes from the HashMap if they are no longer running.
+     * Avoids concurrent modification.
+     */
+    private void deleteOldProcesses() {
+        oldEntries.clear();
+        for (int id : processInfoHashMap.keySet()) {
+            if (!compareIDs.contains(id)) oldEntries.add(id);
+        }
+        for (int id : oldEntries) processInfoHashMap.remove(id);
+    }
 
    /*
     public static void main(String[] args) {
